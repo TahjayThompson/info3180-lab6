@@ -1,6 +1,6 @@
 <template>
 <form @submit.prevent="searchNews" class="d-flex flex-column justify-content-center">
-        <div class="input-group mx-sm-3 mb-2">
+        <div class="input-group mx-sm-3 mb-1">
             <label class="visually-hidden" for="search">Search </label>
             <input type="search" name="search" v-model="searchTerm"
             id="search" class="form-control mb-2 mr-sm-2" placeholder="Enter
@@ -9,15 +9,17 @@
         </div>
         <p>You are searching for {{ searchTerm }}</p>
     </form>
-    <ul class="news__list">
-        <li v-for="(article,index) in articles" class="news__item" :key="index">
-        <div class='card'>
-            <img :src="article.urlToImage" >
-            <p>{{ article.title }}</p>
-            <p>{{article.description}}</p> 
-        </div>    
-        </li>
-    </ul>
+   
+
+  <div class="card_container">
+        <div v-for="(article,index) in articles"  :key="index" class="card" style="width: 18rem;">
+        <img :src="article.urlToImage" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <p class="card-text">{{article.description}}</p>
+        </div>
+    </div>
+  </div>
 </template>
 
 
@@ -66,3 +68,12 @@
             }
     }
 </script>
+
+<style scoped>
+    .card_container{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap:10px;
+    }
+</style>
